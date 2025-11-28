@@ -1,0 +1,15 @@
+3146. Permutation Difference between Two Strings
+class Solution {
+    public int findPermutationDifference(String s, String t) {
+        int n = s.length();
+        int diff = 0;
+        int index;
+        char ch;
+        for(int i = 0;i<n;i++){
+            ch = s.charAt(i);
+            index = t.indexOf(ch);
+            diff += Math.abs(i-index); 
+        }
+        return diff;
+    }
+}
