@@ -1,0 +1,34 @@
+import java.util.*;
+
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        // Add all students to the queue
+        for (int student : students) {
+            queue.add(student);
+        }
+
+        int sandwichIndex = 0;
+        int rotations = 0;
+
+        while (!queue.isEmpty() && rotations < queue.size()) {
+
+            // Student wants the current sandwich
+            if (queue.peek() == sandwiches[sandwichIndex]) {
+                queue.poll();
+                sandwichIndex++;
+                rotations = 0;
+            }
+
+            // Student doesn't want it
+            else {
+                queue.add(queue.poll());
+                rotations++;
+            }
+        }
+
+        return queue.size();
+    }
+}
